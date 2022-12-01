@@ -1,7 +1,6 @@
 function [dx] = ElevenBody(t,x)
-global G m
 
-N = length(m); % The number of bodies
+N = 11; % The number of bodies
 dx = zeros(6*N,1); % for each particle we need 6 equations: 3 for position, 3 for velocity; 
 
 % computing distances r between bodies
@@ -16,8 +15,8 @@ DZ=distance(Z);
 r=(DX.^2+DY.^2+DZ.^2).^0.5; % matrix of distances between all particles
 
 %% accelerations
-   M=m*ones(1,N); % square matrix of masses, each row is m(i) repeated along columns (for next line)
-   a=-G*M./r.^2; % accelerations of each mass
+   M=[1988500e24,6.4171e23,48.685e23,5.97219e24,7.349e22,6.39e23,1.89813e27,5.683e26,8.681e25,1.024e26,1.30900e22]'*ones(1,N); % square matrix of masses, each row is m(i) repeated along columns (for next line)
+   a=-6.6743e-11*M./r.^2; % accelerations of each mass
    
    % get rid of diagonal entries (Inf - forces on bodies on itself)
    a(1:N+1:N*N) = 0;
